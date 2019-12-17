@@ -1,0 +1,58 @@
+<template>
+    <lightning-card title="Realtime Address Rate" icon-name="standard:currency">
+
+        <lightning-layout multiple-rows="true" vertical-align="end">
+        <lightning-layout-item size="12" small-device-size="4" medium-device-size="4" large-device-size="4" padding="around-small">
+                <div class="slds-form-element">
+                        <div class="slds-form-element__control">
+                                <lightning-input-address id="inputAddress"
+                                required
+                                show-address-lookup="true"
+                                address-label="Origin Address"
+                                street-label="Street"
+                                city-label="City"
+                                country-label="Country"
+                                province-label="Province"
+                                postal-code-label="PostalCode"
+                                onchange={genericInputChange}></lightning-input-address>
+                        </div>
+                    </div> 
+            </lightning-layout-item>
+
+            <lightning-layout-item size="12" small-device-size="4" medium-device-size="4" large-device-size="4" padding="around-small">
+                <div class="slds-form-element">
+                        <div class="slds-form-element__control">
+                                <lightning-input-address id="destinationAddress"
+                                required
+                                show-address-lookup="true"
+                                address-label="Destination Address"
+                                street-label="Street"
+                                city-label="City"
+                                country-label="Country"
+                                province-label="Province"
+                                postal-code-label="PostalCode"
+                                onchange={destinationInputChange}></lightning-input-address>
+                        </div>
+                </div> 
+            </lightning-layout-item>
+            <lightning-layout-item size="12" small-device-size="2" medium-device-size="2" large-device-size="2" padding="around-small">
+                    <lightning-button title="Get Rates" 
+                                      label="Get Rates" 
+                                      variant="brand" 
+                                      onclick={handleGetRates}></lightning-button>
+                </lightning-layout-item>
+            </lightning-layout><br/>
+            <p> Transportation charges are: </p>
+            <template for:each={mapOfValues} for:item="keyValue">
+                
+                <tr key={keyValue.key}>
+                    <th scope="col">
+                        <div>{keyValue.key}</div>
+                    </th>
+                    <th scope="col">
+                        <div>{keyValue.value}</div>
+                    </th>
+                </tr>
+            </template>
+    </lightning-card>
+</template>
